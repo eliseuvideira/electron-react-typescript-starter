@@ -4,11 +4,6 @@
     "node": true
   },
   "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
-  "overrides": [
-    {
-      "files": ["./app/main/**/*"]
-    }
-  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2020,
