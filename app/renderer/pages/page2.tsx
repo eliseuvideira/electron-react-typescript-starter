@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Layout from '../components/layout';
 
 const Page2 = () => (
-  <div>
-    <div>{`Page 2`}</div>
-    <Link to="/">Go Back</Link>
-  </div>
+  <Layout title="Page 2">
+    <div>This is Page 2</div>
+  </Layout>
 );
 
 export default Page2;

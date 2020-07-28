@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Layout from '../components/layout';
 
 const Index = () => {
   const [counter, setCounter] = useState(0);
 
   return (
-    <div>
-      <h1>Counter {counter}</h1>
+    <Layout title="Home">
+      <span>Counter {counter}</span>
       <button onClick={() => setCounter(counter + 1)}>Add</button>
-      <Link to="/page-2">Go to Page 2</Link>
-    </div>
+    </Layout>
   );
 };
 
