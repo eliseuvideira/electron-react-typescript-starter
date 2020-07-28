@@ -1,6 +1,10 @@
-import { BrowserWindow } from 'electron';
+import { BrowserWindow, Menu } from 'electron';
 import { join } from 'path';
 import { format } from 'url';
+import {
+  createContextMenuDefault,
+  createContextMenuTextSelected,
+} from './createContextMenu';
 
 export const createWindow = (onClose: () => void): BrowserWindow => {
   const mainWindow = new BrowserWindow({
@@ -23,6 +27,16 @@ export const createWindow = (onClose: () => void): BrowserWindow => {
   );
 
   mainWindow.on('closed', onClose);
+
+  mainWindow.webContents.on('context-menu', (_, props) => {
+    let contextMenu: Menu;
+    if (props.selectionText) {
+      contextMenu = createContextMenuTextSelected(mainWindow, props);
+    } else {
+      contextMenu = createContextMenuDefault(mainWindow, props);
+    }
+    contextMenu.popup();
+  });
 
   return mainWindow;
 };
