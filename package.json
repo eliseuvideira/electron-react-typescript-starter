@@ -39,5 +39,15 @@
     "typescript": "^3.9.7",
     "webpack": "^4.44.0",
     "webpack-cli": "^3.3.12"
+  },
+  "scripts": {
+    "build": "yarn build-main && yarn build-renderer",
+    "build-main": "webpack --mode production --config webpack.config.main.js",
+    "build-renderer": "webpack --mode production --config webpack.config.renderer.js",
+    "dist-linux": "yarn build && electron-builder --linux --dir && electron-builder --linux",
+    "start": "electron .",
+    "start-main": "webpack --mode development --config webpack.config.main.js --inline --watch",
+    "start-renderer": "webpack --mode development --config webpack.config.renderer.js --inline --watch",
+    "dev": "concurrently \"yarn start-main\" \"yarn start-renderer\""
   }
 }
