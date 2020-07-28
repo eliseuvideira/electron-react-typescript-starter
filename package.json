@@ -63,10 +63,10 @@
       "prettier --check"
     ],
     "*app/main/*.{js,json,jsx,ts,tsx}": [
-      "eslint -c app/main/.eslintrc.json app/main/**"
+      "eslint -c app/main/.eslintrc.json"
     ],
     "*app/renderer/*.{js,json,jsx,ts,tsx}": [
-      "eslint -c app/renderer/.eslintrc.json app/renderer/**"
+      "eslint -c app/renderer/.eslintrc.json"
     ]
   }
 }
