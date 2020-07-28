@@ -1,27 +1,27 @@
 /* eslint-disable */
-const webpack = require("webpack");
-const { join } = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
+const { join } = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 /** @type {webpack.Configuration} */
 const config = {
-  entry: join(__dirname, "app", "renderer", "index.tsx"),
+  entry: join(__dirname, 'app', 'renderer', 'index.tsx'),
   output: {
-    path: join(__dirname, "build"),
-    filename: "bundle.js",
+    path: join(__dirname, 'build'),
+    filename: 'bundle.js',
   },
-  target: "electron-renderer",
+  target: 'electron-renderer',
   devtool:
-    process.env.NODE_ENV === "development" ? "inline-source-map" : "source-map",
+    process.env.NODE_ENV === 'development' ? 'inline-source-map' : 'source-map',
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         use: [
           {
-            loader: "ts-loader",
+            loader: 'ts-loader',
             options: {
-              configFile: require.resolve("./tsconfig.renderer.json"),
+              configFile: require.resolve('./tsconfig.renderer.json'),
             },
           },
         ],
@@ -29,26 +29,26 @@ const config = {
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: ["file-loader"],
+        use: ['file-loader'],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader"],
+        use: ['file-loader'],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: join(__dirname, "public", "index.html"),
-      favicon: join(__dirname, "public", "favicon.ico"),
+      template: join(__dirname, 'public', 'index.html'),
+      favicon: join(__dirname, 'public', 'favicon.ico'),
     }),
   ],
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   performance: false,
 };

@@ -1,16 +1,16 @@
 /* eslint-disable */
-const webpack = require("webpack");
-const { join } = require("path");
+const webpack = require('webpack');
+const { join } = require('path');
 
 /** @type {webpack.Configuration} */
 const config = {
-  entry: join(__dirname, "app", "main", "index.ts"),
+  entry: join(__dirname, 'app', 'main', 'index.ts'),
   output: {
-    path: join(__dirname, "build"),
-    filename: "index.js",
-    publicPath: "/",
+    path: join(__dirname, 'build'),
+    filename: 'index.js',
+    publicPath: '/',
   },
-  target: "electron-main",
+  target: 'electron-main',
   node: {
     __dirname: false,
   },
@@ -20,9 +20,9 @@ const config = {
         test: /\.ts$/,
         use: [
           {
-            loader: "ts-loader",
+            loader: 'ts-loader',
             options: {
-              configFile: require.resolve("./tsconfig.main.json"),
+              configFile: require.resolve('./tsconfig.main.json'),
             },
           },
         ],
@@ -31,7 +31,7 @@ const config = {
     ],
   },
   resolve: {
-    extensions: [".ts", ".js"],
+    extensions: ['.ts', '.js'],
   },
   performance: false,
 };

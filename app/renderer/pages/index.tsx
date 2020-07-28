@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const Index = () => {
   const [counter, setCounter] = useState(0);

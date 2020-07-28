@@ -1,6 +1,6 @@
-import { BrowserWindow } from "electron";
-import { join } from "path";
-import { format } from "url";
+import { BrowserWindow } from 'electron';
+import { join } from 'path';
+import { format } from 'url';
 
 export const createWindow = (onClose: () => void): BrowserWindow => {
   const mainWindow = new BrowserWindow({
@@ -12,17 +12,17 @@ export const createWindow = (onClose: () => void): BrowserWindow => {
 
   mainWindow.loadURL(
     format({
-      pathname: join(__dirname, "index.html"),
-      protocol: "file",
+      pathname: join(__dirname, 'index.html'),
+      protocol: 'file',
       slashes: true,
     }),
     {
       userAgent:
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36",
-    }
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
+    },
   );
 
-  mainWindow.on("closed", onClose);
+  mainWindow.on('closed', onClose);
 
   return mainWindow;
 };

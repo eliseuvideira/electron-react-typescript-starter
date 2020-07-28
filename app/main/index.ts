@@ -1,5 +1,5 @@
-import { app, BrowserWindow } from "electron";
-import { createWindow } from "./utils/createWindow";
+import { app, BrowserWindow } from 'electron';
+import { createWindow } from './utils/createWindow';
 
 let mainWindow: BrowserWindow | null = null;
 
@@ -9,15 +9,15 @@ const createMainWindow = () => {
   });
 };
 
-app.on("ready", createMainWindow);
+app.on('ready', createMainWindow);
 
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
-app.on("activate", () => {
+app.on('activate', () => {
   if (mainWindow === null) {
     createMainWindow();
   }
