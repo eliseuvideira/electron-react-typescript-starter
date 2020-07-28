@@ -1,9 +1,20 @@
 {
   "name": "electron-react-typescript-starter",
+  "description": "Electron React Starter App",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "build/index.js",
   "author": "Eliseu Videira <eliseuvideira1@gmail.com>",
   "license": "MIT",
+  "build": {
+    "files": "./build/**/*",
+    "appId": "com.electron-react-typescript-starter-app",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "linux": {
+      "categories": "Utility"
+    }
+  },
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
