@@ -2,6 +2,9 @@
 const webpack = require('webpack');
 const { join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DotEnvPlugin = require('dotenv-webpack');
+
+require('dotenv-safe').config();
 
 /** @type {webpack.Configuration} */
 const config = {
@@ -45,6 +48,9 @@ const config = {
     new HtmlWebpackPlugin({
       template: join(__dirname, 'public', 'index.html'),
       favicon: join(__dirname, 'public', 'favicon.ico'),
+    }),
+    new DotEnvPlugin({
+      systemvars: true,
     }),
   ],
   resolve: {

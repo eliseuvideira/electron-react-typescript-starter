@@ -1,6 +1,9 @@
 /* eslint-disable */
 const webpack = require('webpack');
 const { join } = require('path');
+const DotEnvPlugin = require('dotenv-webpack');
+
+require('dotenv-safe').config();
 
 /** @type {webpack.Configuration} */
 const config = {
@@ -30,6 +33,11 @@ const config = {
       },
     ],
   },
+  plugins: [
+    new DotEnvPlugin({
+      systemvars: true,
+    }),
+  ],
   resolve: {
     extensions: ['.ts', '.js'],
   },
