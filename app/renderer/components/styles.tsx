@@ -14,18 +14,21 @@ const GlobalStyles = createGlobalStyle`
     grid-template-areas: "header" "main" "footer";
     min-height: 100%;
     min-width: 480px;
-  }
 
-  > header {
-    grid-area: header;
-  }
+    > header {
+      grid-area: header;
+      padding: 0 20px;
+    }
 
-  > main {
-    grid-area: main;
-  }
+    > main {
+      grid-area: main;
+      padding: 0 20px;
+    }
 
-  > footer {
-    grid-area: footer;
+    > footer {
+      grid-area: footer;
+      padding: 0 20px;
+    }
   }
 `;
 

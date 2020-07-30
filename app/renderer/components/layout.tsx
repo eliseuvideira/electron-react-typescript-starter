@@ -7,7 +7,9 @@ const Header = styled.header``;
 
 const Main = styled.main``;
 
-const Footer = styled.footer``;
+const Footer = styled.footer`
+  margin: 20px 0 10px;
+`;
 
 const Layout: React.FC<PropsWithChildren<{ title: string }>> = ({
   children,

@@ -53,6 +53,13 @@ const Hamburguer: React.FC<{ open: boolean; onClick: () => void }> = ({
 
 const Li = styled.li`
   padding: 0 10px;
+  :first-child {
+    padding-left: 0;
+  }
+
+  :nth-last-child(2) {
+    padding-right: 0;
+  }
 `;
 
 const Ul = styled.ul`
@@ -60,6 +67,7 @@ const Ul = styled.ul`
   display: flex;
   list-style: none;
   flex-direction: row;
+  margin: 0;
 
   .menu {
     display: none;
