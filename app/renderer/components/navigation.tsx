@@ -60,6 +60,10 @@ const Li = styled.li`
   :nth-last-child(2) {
     padding-right: 0;
   }
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 const Ul = styled.ul`
