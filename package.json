@@ -12,7 +12,7 @@
       "category": "public.app-category.utilities"
     },
     "linux": {
-      "categories": "Utility"
+      "category": "Utility"
     }
   },
   "dependencies": {
