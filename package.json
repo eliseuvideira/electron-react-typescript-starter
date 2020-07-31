@@ -5,16 +5,6 @@
   "main": "build/index.js",
   "author": "Eliseu Videira <eliseuvideira1@gmail.com>",
   "license": "MIT",
-  "build": {
-    "files": "./build/**/*",
-    "appId": "com.electron-react-typescript-starter-app",
-    "mac": {
-      "category": "public.app-category.utilities"
-    },
-    "linux": {
-      "category": "Utility"
-    }
-  },
   "dependencies": {
     "dotenv": "^8.2.0",
     "dotenv-safe": "^8.2.0",
@@ -64,9 +54,10 @@
     "build": "yarn build-main && yarn build-renderer",
     "build-main": "webpack --mode production --config webpack.config.main.js",
     "build-renderer": "webpack --mode production --config webpack.config.renderer.js",
-    "dist": "yarn dist-linux && yarn dist-windows",
+    "dist": "electron-builder -mlw --dir && electron-builder -mlw",
     "dist-linux": "electron-builder --linux --dir && electron-builder --linux",
     "dist-windows": "electron-builder --windows --dir && electron-builder --windows",
+    "dist-mac": "electron-builder --mac --dir && electron-builder --mac",
     "start": "electron .",
     "start-main": "webpack --mode development --config webpack.config.main.js --inline --watch",
     "start-renderer": "webpack --mode development --config webpack.config.renderer.js --inline --watch",
