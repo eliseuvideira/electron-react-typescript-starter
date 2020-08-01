@@ -33,7 +33,13 @@ git commit -m 'Initial setup'
 
 Run in development mode using
 ```sh
-yarn dev & yarn start
+yarn dev
+```
+
+Building for production
+```sh
+docker-compose up
+# docker-compose up --build
 ```
 
 ## 🔧 Instructions
