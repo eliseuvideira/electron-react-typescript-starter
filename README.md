@@ -32,15 +32,23 @@ git commit -m 'Initial setup'
 ```
 
 Run in development mode using
+
 ```sh
 yarn dev
 ```
 
 Building for production
+
 ```sh
-docker-compose up
-# docker-compose up --build
+docker-compose up --build
 ```
+
+## ✨ Features
+
+- Typescript
+- React
+- Hot reloading
+- Docker
 
 ## 🔧 Instructions
 
@@ -53,10 +61,10 @@ docker-compose up
 
 Contributions, issues and feature requests are welcome.
 
-
 ## 📝 License
+
 [MIT](https://choosealicense.com/licenses/mit/)
 
-
 ---
+
 Made with 💟 by Eliseu Videira
