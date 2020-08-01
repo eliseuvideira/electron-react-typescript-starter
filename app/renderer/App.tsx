@@ -2,16 +2,8 @@ import React from 'react';
 import Router from './Router';
 import 'typeface-roboto';
 import 'typeface-roboto-slab';
-import { typography } from './utils/typography';
-import { Helmet } from 'react-helmet';
+import { hot } from 'react-hot-loader/root';
 
-const App = () => (
-  <>
-    <Helmet>
-      <style>{`${typography.createStyles()}`}</style>
-    </Helmet>
-    <Router />
-  </>
-);
+const App = () => <Router />;
 
-export default App;
+export default hot(App);

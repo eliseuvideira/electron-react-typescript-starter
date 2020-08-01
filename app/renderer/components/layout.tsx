@@ -2,6 +2,8 @@ import React, { PropsWithChildren } from 'react';
 import Styles from './styles';
 import styled from 'styled-components';
 import Navigation from './navigation';
+import { Helmet } from 'react-helmet';
+import { typography } from '../utils/typography';
 
 const Header = styled.header``;
 
@@ -15,16 +17,21 @@ const Layout: React.FC<PropsWithChildren<{ title: string }>> = ({
   children,
   title,
 }) => (
-  <Styles>
-    <Header>
-      <Navigation />
-    </Header>
-    <Main>
-      <h1>{title}</h1>
-      <div>{children}</div>
-    </Main>
-    <Footer>&copy; Made with Electron</Footer>
-  </Styles>
+  <>
+    <Helmet>
+      <style>{typography.createStyles()}</style>
+    </Helmet>
+    <Styles>
+      <Header>
+        <Navigation />
+      </Header>
+      <Main>
+        <h1>{title}</h1>
+        <div>{children}</div>
+      </Main>
+      <Footer>&copy; Made with Electron</Footer>
+    </Styles>
+  </>
 );
 
 export default Layout;

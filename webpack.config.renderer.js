@@ -2,61 +2,137 @@
 const webpack = require('webpack');
 const { join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const DotEnvPlugin = require('dotenv-webpack');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
-require('dotenv-safe').config();
+const isDev = process.env.NODE_ENV === 'development';
 
-/** @type {webpack.Configuration} */
-const config = {
-  entry: join(__dirname, 'app', 'renderer', 'index.tsx'),
-  output: {
-    path: join(__dirname, 'build'),
-    filename: 'bundle.js',
-  },
-  target: 'electron-renderer',
-  devtool:
-    process.env.NODE_ENV === 'development' ? 'inline-source-map' : 'source-map',
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: [
+const { required: requiredKeys } = require('dotenv-safe').config();
+
+/** @returns {webpack.Configuration} */
+const getConfig = () => {
+  if (isDev) {
+    return {
+      entry: join(__dirname, 'app', 'renderer', 'index.tsx'),
+      output: {
+        path: join(__dirname, 'build'),
+        filename: 'bundle.js',
+        publicPath: '/',
+      },
+      devServer: {
+        historyApiFallback: true,
+        port: 8080,
+      },
+      devtool: 'eval-source-map',
+      module: {
+        rules: [
           {
-            loader: 'ts-loader',
-            options: {
-              configFile: require.resolve('./tsconfig.renderer.json'),
+            test: /\.tsx?$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                babelrc: false,
+                cacheDirectory: true,
+                presets: [
+                  [
+                    '@babel/preset-env',
+                    { targets: { browsers: 'last 2 versions' } },
+                  ],
+                  '@babel/preset-typescript',
+                  '@babel/preset-react',
+                ],
+                plugins: ['react-hot-loader/babel'],
+              },
             },
           },
+          {
+            test: /\.css$/i,
+            use: ['style-loader', 'css-loader'],
+          },
+          {
+            test: /\.(woff|woff2|eot|ttf|otf)$/,
+            use: ['file-loader'],
+          },
+          {
+            test: /\.(png|svg|jpg|gif)$/,
+            use: ['file-loader'],
+          },
         ],
-        exclude: [/node_modules/, /app\/main/],
       },
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+      performance: false,
+      plugins: [
+        new ForkTsCheckerWebpackPlugin({
+          typescript: {
+            configFile: 'tsconfig.renderer.json',
+          },
+        }),
+        new webpack.NamedModulesPlugin(),
+        new webpack.EnvironmentPlugin(requiredKeys),
+        new HtmlWebpackPlugin({
+          template: join(__dirname, 'public', 'index.html'),
+          favicon: join(__dirname, 'public', 'favicon.ico'),
+        }),
+      ],
+      resolve: {
+        modules: ['node_modules'],
+        alias: {
+          'react-dom': '@hot-loader/react-dom',
+        },
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
       },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: ['file-loader'],
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader'],
-      },
+    };
+  }
+  return {
+    entry: join(__dirname, 'app', 'renderer', 'index.tsx'),
+    output: {
+      path: join(__dirname, 'build'),
+      filename: 'bundle.js',
+    },
+    target: 'electron-renderer',
+    devtool: 'source-map',
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          use: [
+            {
+              loader: 'ts-loader',
+              options: {
+                configFile: require.resolve('./tsconfig.renderer.json'),
+              },
+            },
+          ],
+          exclude: [/node_modules/, /app\/main/],
+        },
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+        },
+        {
+          test: /\.(woff|woff2|eot|ttf|otf)$/,
+          use: ['file-loader'],
+        },
+        {
+          test: /\.(png|svg|jpg|gif)$/,
+          use: ['file-loader'],
+        },
+      ],
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: join(__dirname, 'public', 'index.html'),
+        favicon: join(__dirname, 'public', 'favicon.ico'),
+      }),
+      new webpack.EnvironmentPlugin(requiredKeys),
     ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: join(__dirname, 'public', 'index.html'),
-      favicon: join(__dirname, 'public', 'favicon.ico'),
-    }),
-    new DotEnvPlugin({
-      systemvars: true,
-    }),
-  ],
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
-  performance: false,
+    resolve: {
+      extensions: ['.tsx', '.ts', '.js'],
+    },
+    performance: false,
+  };
 };
+
+/** @type {webpack.Configuration} */
+const config = getConfig();
 
 module.exports = config;

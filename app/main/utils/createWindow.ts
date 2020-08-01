@@ -9,6 +9,21 @@ import {
 const DEFAULT_USER_AGENT =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36';
 
+const getUrl = () => {
+  if (process.env.NODE_ENV === 'development') {
+    return format({
+      pathname: 'localhost:8080',
+      protocol: 'http',
+      slashes: true,
+    });
+  }
+  return format({
+    pathname: join(__dirname, 'index.html'),
+    protocol: 'file',
+    slashes: true,
+  });
+};
+
 export const createWindow = (onClose: () => void): BrowserWindow => {
   const mainWindow = new BrowserWindow({
     width: 1080,
@@ -17,16 +32,12 @@ export const createWindow = (onClose: () => void): BrowserWindow => {
     webPreferences: { nodeIntegration: true },
   });
 
-  mainWindow.loadURL(
-    format({
-      pathname: join(__dirname, 'index.html'),
-      protocol: 'file',
-      slashes: true,
-    }),
-    {
-      userAgent: DEFAULT_USER_AGENT,
-    },
-  );
+  const url = getUrl();
+  console.log(url);
+
+  mainWindow.loadURL(url, {
+    userAgent: DEFAULT_USER_AGENT,
+  });
 
   mainWindow.on('closed', onClose);
 

@@ -1,9 +1,8 @@
 /* eslint-disable */
 const webpack = require('webpack');
 const { join } = require('path');
-const DotEnvPlugin = require('dotenv-webpack');
 
-require('dotenv-safe').config();
+const { required: requiredKeys } = require('dotenv-safe').config();
 
 /** @type {webpack.Configuration} */
 const config = {
@@ -33,11 +32,7 @@ const config = {
       },
     ],
   },
-  plugins: [
-    new DotEnvPlugin({
-      systemvars: true,
-    }),
-  ],
+  plugins: [new webpack.EnvironmentPlugin(requiredKeys)],
   resolve: {
     extensions: ['.ts', '.js'],
   },
