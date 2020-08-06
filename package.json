@@ -67,7 +67,8 @@
     "dist-linux": "electron-builder --linux --dir && electron-builder --linux",
     "dist-windows": "electron-builder --windows --dir && electron-builder --windows",
     "dist-mac": "electron-builder --mac --dir && electron-builder --mac",
-    "start": "wait-on http://localhost:8080 && NODE_ENV=development electron . & yarn dev",
+    "start": "wait-on http://localhost:8080 && yarn start-electron",
+    "start-electron": "NODE_ENV=development electron .",
     "dev-main": "NODE_ENV=development webpack --mode development --config webpack.config.main.js --inline --watch",
     "dev-renderer": "NODE_ENV=development webpack-dev-server --mode development --config webpack.config.renderer.js --inline --hot",
     "dev": "concurrently \"yarn dev-main\" \"yarn dev-renderer\""
