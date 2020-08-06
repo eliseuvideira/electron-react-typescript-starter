@@ -5,8 +5,7 @@ import {
   createContextMenuDefault,
   createContextMenuTextSelected,
 } from './createContextMenu';
-
-const IS_DEVELOPMENT = process.env.NODE_ENV === 'development';
+import { IS_DEVELOPMENT } from './constants';
 
 const DEFAULT_USER_AGENT =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36';
@@ -33,7 +32,6 @@ export const createWindow = (onClose: () => void): BrowserWindow => {
     minWidth: 495,
     webPreferences: {
       nodeIntegration: true,
-      webSecurity: !IS_DEVELOPMENT,
     },
   });
 
