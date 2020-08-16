@@ -1,6 +1,7 @@
 /* eslint-disable */
 const webpack = require('webpack');
 const { join } = require('path');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const { required: requiredKeys } = require('dotenv-safe').config();
 
@@ -20,19 +21,25 @@ const config = {
     rules: [
       {
         test: /\.ts$/,
-        use: [
-          {
-            loader: 'ts-loader',
-            options: {
-              configFile: require.resolve('./tsconfig.main.json'),
-            },
+        use: {
+          loader: 'babel-loader',
+          options: {
+            babelrc: false,
+            cacheDirectory: true,
+            presets: ['@babel/preset-typescript'],
+            plugins: ['react-hot-loader/babel'],
           },
-        ],
+        },
         exclude: /node_modules/,
       },
     ],
   },
-  plugins: [new webpack.EnvironmentPlugin(requiredKeys)],
+  plugins: [
+    new ForkTsCheckerWebpackPlugin({
+      typescript: { configFile: join(__dirname, 'tsconfig.main.json') },
+    }),
+    new webpack.EnvironmentPlugin(requiredKeys),
+  ],
   resolve: {
     extensions: ['.ts', '.js'],
   },

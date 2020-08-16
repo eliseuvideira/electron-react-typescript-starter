@@ -34,14 +34,7 @@ const getConfig = () => {
               options: {
                 babelrc: false,
                 cacheDirectory: true,
-                presets: [
-                  [
-                    '@babel/preset-env',
-                    { targets: { browsers: 'last 2 versions' } },
-                  ],
-                  '@babel/preset-typescript',
-                  '@babel/preset-react',
-                ],
+                presets: ['@babel/preset-typescript', '@babel/preset-react'],
                 plugins: ['react-hot-loader/babel'],
               },
             },
@@ -95,14 +88,23 @@ const getConfig = () => {
       rules: [
         {
           test: /\.tsx?$/,
-          use: [
-            {
-              loader: 'ts-loader',
-              options: {
-                configFile: require.resolve('./tsconfig.renderer.json'),
-              },
+          use: {
+            loader: 'babel-loader',
+            options: {
+              babelrc: false,
+              cacheDirectory: true,
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    targets: { browsers: 'last 2 versions, not dead, > 0.25%' },
+                  },
+                ],
+                ['@babel/preset-typescript', { onlyRemoveTypeImports: true }],
+                '@babel/preset-react',
+              ],
             },
-          ],
+          },
           exclude: [/node_modules/, /app\/main/],
         },
         {
@@ -119,7 +121,11 @@ const getConfig = () => {
         },
       ],
     },
+    performance: false,
     plugins: [
+      new ForkTsCheckerWebpackPlugin({
+        typescript: { configFile: join(__dirname, 'tsconfig.renderer.json') },
+      }),
       new HtmlWebpackPlugin({
         template: join(__dirname, 'public', 'index.html'),
         favicon: join(__dirname, 'public', 'favicon.ico'),
@@ -129,7 +135,6 @@ const getConfig = () => {
     resolve: {
       extensions: ['.tsx', '.ts', '.js'],
     },
-    performance: false,
   };
 };
 
