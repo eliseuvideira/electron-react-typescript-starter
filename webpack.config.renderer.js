@@ -18,6 +18,7 @@ const getConfig = () => {
         filename: 'bundle.js',
         publicPath: '/',
       },
+      target: 'electron-renderer',
       devServer: {
         historyApiFallback: true,
         port: 8080,
