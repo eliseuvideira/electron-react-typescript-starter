@@ -94,12 +94,6 @@ const getConfig = () => {
               babelrc: false,
               cacheDirectory: true,
               presets: [
-                [
-                  '@babel/preset-env',
-                  {
-                    targets: { browsers: 'last 2 versions, not dead, > 0.25%' },
-                  },
-                ],
                 ['@babel/preset-typescript', { onlyRemoveTypeImports: true }],
                 '@babel/preset-react',
               ],
