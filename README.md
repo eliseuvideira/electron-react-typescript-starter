@@ -1,6 +1,8 @@
 # Electron React TypeScript Starter
 
-<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/eliseuvideira/electron-react-typescript-starter?style=plastic">
+<a href="https://github.com/eliseuvideira/electron-react-typescript-starter/search?l=typescript">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/eliseuvideira/electron-react-typescript-starter?style=plastic">
+</a>
 
 <a href="https://github.com/eliseuvideira/electron-react-typescript-starter/issues">
   <img alt="GitHub issues" src="https://img.shields.io/github/issues/eliseuvideira/electron-react-typescript-starter?style=plastic">
@@ -40,7 +42,7 @@ docker-compose up --build
 
 ## ✨ Features
 
-- 😎 Typescript
+- 🟦 Typescript
 - ⚛️ React
 - 🔥 Hot reloading
 - 🐋 Docker
