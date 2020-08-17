@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "CommonJS",
-    "rootDir": "./app/main",
+    "rootDir": ".",
     "outDir": "build",
     "removeComments": true,
     "strict": true,
@@ -12,5 +12,5 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
   },
-  "exclude": ["./node_modules", "./app/renderer"]
+  "exclude": ["./node_modules"]
 }

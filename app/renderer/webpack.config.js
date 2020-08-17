@@ -12,7 +12,7 @@ const { required: requiredKeys } = require('dotenv-safe').config();
 const getConfig = () => {
   if (isDev) {
     return {
-      entry: join(__dirname, 'app', 'renderer', 'index.tsx'),
+      entry: join(__dirname, 'index.tsx'),
       output: {
         path: join(__dirname, 'build'),
         filename: 'bundle.js',
@@ -57,7 +57,7 @@ const getConfig = () => {
       plugins: [
         new ForkTsCheckerWebpackPlugin({
           typescript: {
-            configFile: 'tsconfig.renderer.json',
+            configFile: join(__dirname, 'tsconfig.json'),
           },
         }),
         new webpack.NamedModulesPlugin(),
@@ -77,9 +77,9 @@ const getConfig = () => {
     };
   }
   return {
-    entry: join(__dirname, 'app', 'renderer', 'index.tsx'),
+    entry: join(__dirname, 'index.tsx'),
     output: {
-      path: join(__dirname, 'build'),
+      path: join(__dirname, '..', '..', 'build', 'renderer'),
       filename: 'bundle.js',
     },
     target: 'electron-renderer',
@@ -118,7 +118,7 @@ const getConfig = () => {
     performance: false,
     plugins: [
       new ForkTsCheckerWebpackPlugin({
-        typescript: { configFile: join(__dirname, 'tsconfig.renderer.json') },
+        typescript: { configFile: join(__dirname, 'tsconfig.json') },
       }),
       new HtmlWebpackPlugin({
         template: join(__dirname, 'public', 'index.html'),

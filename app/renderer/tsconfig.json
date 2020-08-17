@@ -4,7 +4,6 @@
     "module": "ESNext",
     "jsx": "react",
     "sourceMap": true,
-    "outDir": "./build",
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -14,5 +13,5 @@
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true
   },
-  "exclude": ["./node_modules", "./app/main"]
+  "exclude": ["./node_modules"]
 }

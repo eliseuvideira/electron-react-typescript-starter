@@ -2,7 +2,7 @@
   "name": "electron-react-typescript-starter",
   "description": "Electron React Starter App",
   "version": "1.0.0",
-  "main": "build/index.js",
+  "main": "build/main/index.js",
   "author": "Eliseu Videira <eliseuvideira1@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -59,16 +59,16 @@
   },
   "scripts": {
     "build": "yarn build-main && yarn build-renderer",
-    "build-main": "NODE_ENV=production webpack --mode production --config webpack.config.main.js",
-    "build-renderer": "NODE_ENV=production webpack --mode production --config webpack.config.renderer.js",
+    "build-main": "NODE_ENV=production webpack --mode production --config ./app/main/webpack.config.js",
+    "build-renderer": "NODE_ENV=production webpack --mode production --config ./app/renderer/webpack.config.js",
     "dist": "electron-builder -mlw --dir && electron-builder -mlw",
     "dist-linux": "electron-builder --linux --dir && electron-builder --linux",
     "dist-windows": "electron-builder --windows --dir && electron-builder --windows",
     "dist-mac": "electron-builder --mac --dir && electron-builder --mac",
     "start": "wait-on http://localhost:8080 && yarn start-electron",
     "start-electron": "NODE_ENV=development electron .",
-    "dev-main": "NODE_ENV=development webpack --mode development --config webpack.config.main.js --inline --watch",
-    "dev-renderer": "NODE_ENV=development webpack-dev-server --mode development --config webpack.config.renderer.js --inline --hot",
+    "dev-main": "NODE_ENV=development webpack --mode development --config ./app/main/webpack.config.js --inline --watch",
+    "dev-renderer": "NODE_ENV=development webpack-dev-server --mode development --config ./app/renderer/webpack.config.js --inline --hot",
     "dev": "concurrently \"yarn dev-main\" \"yarn dev-renderer\""
   },
   "lint-staged": {

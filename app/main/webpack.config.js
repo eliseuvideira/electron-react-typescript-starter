@@ -7,9 +7,9 @@ const { required: requiredKeys } = require('dotenv-safe').config();
 
 /** @type {webpack.Configuration} */
 const config = {
-  entry: join(__dirname, 'app', 'main', 'index.ts'),
+  entry: join(__dirname, 'index.ts'),
   output: {
-    path: join(__dirname, 'build'),
+    path: join(__dirname, '..', '..', 'build', 'main'),
     filename: 'index.js',
     publicPath: '/',
   },
@@ -36,7 +36,7 @@ const config = {
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
-      typescript: { configFile: join(__dirname, 'tsconfig.main.json') },
+      typescript: { configFile: join(__dirname, 'tsconfig.json') },
     }),
     new webpack.EnvironmentPlugin(requiredKeys),
   ],

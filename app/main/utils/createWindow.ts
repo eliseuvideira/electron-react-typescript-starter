@@ -19,7 +19,7 @@ const getUrl = () => {
     });
   }
   return format({
-    pathname: join(__dirname, 'index.html'),
+    pathname: join(__dirname, '..', 'renderer', 'index.html'),
     protocol: 'file',
     slashes: true,
   });
