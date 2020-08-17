@@ -20,21 +20,16 @@
 
 ## 🚀 Getting started
 
-Clone the repo, remove the `.git` folder and then code something awesome.
-
-```sh
-git clone https://github.com/eliseuvideira/electron-react-typescript-starter.git my-electron-app
-cd my-electron-app
-rm -rf .git
-git init
-git add -A
-git commit -m 'Initial setup'
-```
-
 Run in development mode using
 
 ```sh
 yarn dev
+```
+
+Start electron instance
+
+```sh
+yarn start
 ```
 
 Building for production
@@ -45,10 +40,10 @@ docker-compose up --build
 
 ## ✨ Features
 
-- Typescript
-- React
-- Hot reloading
-- Docker
+- 😎 Typescript
+- ⚛️ React
+- 🔥 Hot reloading
+- 🐋 Docker
 
 ## 🔧 Instructions
 
