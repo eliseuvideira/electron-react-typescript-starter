@@ -2,6 +2,7 @@
 const webpack = require('webpack');
 const { join } = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const { required: requiredKeys } = require('dotenv-safe').config();
 
@@ -44,6 +45,10 @@ const config = {
     extensions: ['.ts', '.js'],
   },
   performance: false,
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+  },
 };
 
 module.exports = config;
