@@ -1,6 +1,5 @@
 import { app, BrowserWindow, protocol } from 'electron';
 import { createWindow } from './utils/createWindow';
-import { IS_DEVELOPMENT } from './utils/constants';
 
 let mainWindow: BrowserWindow | null = null;
 
@@ -11,17 +10,15 @@ const createMainWindow = () => {
 };
 
 const createFileProtocol = () => {
-  if (IS_DEVELOPMENT) {
-    const name = 'dev-file';
-    protocol.registerFileProtocol(name, (request, callback) => {
-      const url = request.url.replace(`${name}://`, '');
-      try {
-        callback(decodeURIComponent(url));
-      } catch (err) {
-        console.error(err);
-      }
-    });
-  }
+  const name = 'media';
+  protocol.registerFileProtocol(name, (request, callback) => {
+    const url = request.url.replace(`${name}://`, '');
+    try {
+      callback(decodeURIComponent(url));
+    } catch (err) {
+      console.error(err);
+    }
+  });
 };
 
 app.on('ready', () => {
