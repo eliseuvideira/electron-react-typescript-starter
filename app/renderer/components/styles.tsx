@@ -1,5 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { Helmet } from 'react-helmet';
+import { typography } from '../utils/typography';
 
 const theme = {};
 
@@ -34,6 +36,9 @@ const GlobalStyles = createGlobalStyle`
 
 const Styles: React.FC<PropsWithChildren<{}>> = ({ children }) => (
   <>
+    <Helmet>
+      <style>{typography.createStyles()}</style>
+    </Helmet>
     <GlobalStyles />
     <ThemeProvider theme={theme}>{children}</ThemeProvider>
   </>
